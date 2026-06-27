@@ -28,6 +28,15 @@ const projects = [
     url: "https://usetailr.vercel.app",
     status: "Live",
   },
+  {
+    id: 4,
+    name: "Docket",
+    tagline: "Create and send professional invoices in seconds.",
+    description: "A clean, no-account invoice generator built for freelancers and small businesses. Fill in your details, add line items, pick a currency, upload your logo, and choose from three invoice templates. Preview, save to your dashboard, and download as PDF. Everything runs in the browser with localStorage.",
+    tags: ["React", "localStorage", "PDF", "Vercel"],
+    url: "https://docketio.vercel.app",
+    status: "Live",
+  },
 ];
 
 function useInView() {
@@ -98,21 +107,25 @@ function ProjectCard({ project, index }) {
                   {tag}
                 </span>
               ))}
-              <span style={{ marginLeft: "auto", fontSize: 16, color: hovered || expanded ? "#111" : "#ccc", transition: "color 0.2s, transform 0.2s", display: "inline-block", transform: expanded ? "rotate(90deg)" : hovered ? "translate(2px,-2px)" : "none" }}>
-                ↗
-              </span>
             </div>
           </div>
+          <span style={{ marginLeft: "auto", fontSize: 16, color: hovered || expanded ? "#111" : "#ccc", transition: "color 0.2s, transform 0.2s", display: "inline-block", transform: expanded ? "rotate(90deg)" : hovered ? "translate(2px,-2px)" : "none" }}>
+            /
+          </span>
         </div>
 
         <div style={{ overflow: "hidden", maxHeight: expanded ? 120 : 0, transition: "max-height 0.4s cubic-bezier(0.4,0,0.2,1)" }}>
           <div style={{ padding: "0 40px 36px 128px", display: "flex", alignItems: "center", gap: 16, opacity: expanded ? 1 : 0, transition: "opacity 0.3s ease 0.15s" }}>
-            <a href={project.url} target="_blank" rel="noopener noreferrer" onClick={e => e.stopPropagation()}
+            <a
+              href={project.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={e => e.stopPropagation()}
               style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "11px 22px", borderRadius: 8, background: "#111", color: "#f7f6f3", fontSize: 13, fontWeight: 600, textDecoration: "none", letterSpacing: "-0.01em" }}
               onMouseEnter={e => { e.currentTarget.style.background = "#333"; e.currentTarget.style.transform = "translateY(-1px)"; }}
               onMouseLeave={e => { e.currentTarget.style.background = "#111"; e.currentTarget.style.transform = "none"; }}
             >
-              Visit {project.name} ↗
+              Visit {project.name} /
             </a>
             <span style={{ fontSize: 12, color: "#bbb" }}>Opens in a new tab</span>
           </div>
@@ -124,17 +137,14 @@ function ProjectCard({ project, index }) {
 
 export default function App() {
   const [loaded, setLoaded] = useState(false);
-  useEffect(() => { const t = setTimeout(() => setLoaded(true), 60); return () => clearTimeout(t); }, []);
+  useEffect(() => { setTimeout(() => setLoaded(true), 80); }, []);
 
   return (
-    <div style={{ fontFamily: "'Inter', system-ui, sans-serif", background: "#f7f6f3", minHeight: "100vh" }}>
-      <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
-      <style>{`* { box-sizing: border-box; margin: 0; padding: 0; } a { text-decoration: none; } @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }`}</style>
-
-      <div style={{ maxWidth: 800, margin: "0 auto" }}>
+    <div style={{ minHeight: "100vh", background: "#f7f6f3", fontFamily: "'Inter', sans-serif" }}>
+      <div style={{ maxWidth: 780, margin: "0 auto" }}>
         <header style={{ padding: "72px 40px 56px" }}>
           <div style={{ opacity: loaded ? 1 : 0, transform: loaded ? "translateY(0)" : "translateY(16px)", transition: "opacity 0.6s ease 0.05s, transform 0.6s ease 0.05s" }}>
-            <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", color: "#aaa", marginBottom: 20 }}>Ace — aceysll</div>
+            <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", color: "#aaa", marginBottom: 20 }}>Ace -- aceysll</div>
           </div>
           <div style={{ opacity: loaded ? 1 : 0, transform: loaded ? "translateY(0)" : "translateY(16px)", transition: "opacity 0.6s ease 0.15s, transform 0.6s ease 0.15s" }}>
             <h1 style={{ fontFamily: "'DM Serif Display', Georgia, serif", fontSize: "clamp(36px, 7vw, 58px)", fontWeight: 400, letterSpacing: "-0.03em", lineHeight: 1.05, color: "#111", marginBottom: 20 }}>
